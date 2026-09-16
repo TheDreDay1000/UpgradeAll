@@ -39,12 +39,12 @@ jobs:
           java-version: 21
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-        with:
-          cmdline-tools-version: 8512546
+        uses: android-actions/setup-android@v2
 
       - name: Install NDK
-        run: echo "y" | sdkmanager --install "ndk;${{ env.NDK_VERSION }}"
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;${{ env.NDK_VERSION }}"
 
       - name: Install Cargo with aarch64-linux-android
         uses: dtolnay/rust-toolchain@stable
