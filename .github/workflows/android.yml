@@ -38,9 +38,6 @@ jobs:
           distribution: 'temurin'
           java-version: 21
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
-
       - name: Install NDK
         run: |
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
@@ -68,4 +65,3 @@ jobs:
         with:
           path: './app/build/outputs/apk/debug/*.apk'
           name: build_debug_${{ env.VERSION }}
-
